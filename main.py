@@ -33,30 +33,55 @@ class ReplaceAll(object):
             elif os.path.isdir(path):
                 for it in os.listdir(path):
                     find_file(os.path.join(path, it))
-        find_file(self._path)
+        find_file(self._path)            
 
-        def chack_file(filename):
-            with open(filename, "rb") as f:
-                content = f.read().decode('utf-8', errors='ignore')
-                group = re.search(self._word, content)
-                if group:
-                    print(filename, ":", group[0])
-                
-                return group
-        self._all_files = filter(chack_file, self._all_files)
+        def check_file(filename):
+            file_type = ['.h', '.cpp', '.hpp', '.m', '.mm', '.cc']
+            for it in file_type:
+                if filename.endswith(it):
+                    with open(filename, "rb") as f:
+                        content = f.read().decode('utf-8', errors='ignore')
+                        group = re.search(self._word, content)             
+                        return group
+            
+                    
+
+        self._all_files = list(filter(check_file, self._all_files))
+
         for i in self._all_files:
             print(i)
+        print(type(self._all_files))
+
+    def __iter__(self):
+        print("__iter__")
+        self.tmp_it = iter(self._all_files)
+        return self            
         pass
-        
+    def __next__(self):
+        print("__next__")
+        fn = next(self.tmp_it)
+
+        new_content = ''
+        with open(fn, "rb") as f:
+            content = f.read().decode('utf-8', errors='ignore')
+            def sub_replace(mobj):  
+                return "LL" + mobj[2]
+            new_content = re.sub(self._word, sub_replace, content)
+
+        with open(fn, "wt") as f:
+            f.write(new_content)
+        return fn
         
        
 
 if __name__ == "__main__":
 
-    print(local2utc('2018-10-12 00:00:00'))
-    print(local2utc('2018-10-23 21:00:00'))  
-    replace = ReplaceAll('../LLLog', 'PZLog')
+    replace = ReplaceAll('../LLLog', '(PZ)(\w+)')
     replace.find_all_file()
+
+    for i in replace:
+        print(i)
+        input()
 
   
 

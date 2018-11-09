@@ -3,6 +3,7 @@ import requests, json, time
 from datetime import datetime
 
 import re
+import socket
 
 def local2utc(stime):
     #utc timezone to loacal zone
@@ -12,7 +13,6 @@ def local2utc(stime):
     mtime -= 8*3600
     ret = datetime.fromtimestamp(mtime)
     return str(ret)
-
 class ReplaceAll(object):
     '''
     _xx protected
@@ -50,7 +50,7 @@ class ReplaceAll(object):
 
         for i in self._all_files:
             print(i)
-        print(type(self._all_files))
+
 
     def __iter__(self):
         print("__iter__")
@@ -70,18 +70,23 @@ class ReplaceAll(object):
 
         with open(fn, "wt") as f:
             f.write(new_content)
-        return fn
-        
+        return fn  
        
 
-if __name__ == "__main__":
-
-    replace = ReplaceAll('../LLLog', '(PZ)(\w+)')
+if __name__ == "__main__":                                           
+    '''
+    replace = ReplaceAll('../../first/LLLog', '()(\w+)')
     replace.find_all_file()
+    '''
+    
+    #print(os.path.dirname(os.path.abspath(__file__)))
 
+    '''
     for i in replace:
         print(i)
         input()
+    '''
+
 
   
 

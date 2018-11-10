@@ -4,33 +4,17 @@ import random
     快排：一堆支票，选定一个中间值，将小于中间值的支票放一堆，将大于中间值的放另一堆。以同样的方式对以上两堆支票处理
     中间值的选取很重要，通常采用随机数。
 '''
+def partition():
+    pass
 
-def __quick_sort__(first, end, data):
-    mid_pos= (first + end) // 2
-    mid_data = data[mid_pos]
-    if first == end:
-        return
-    __first = first
-    __end = end
-    while __first < __end:
-        while __first < mid_pos:
-            if __first > mid_data:
-                break
-            else:
-                __first -= 1
-        data[mid], data[__first] = data[__first], data[mid]
-        while __end > mid_pos:
-            if __end < mid_data:
-                break
-            else:
-                __end -=1
-        data[mid_pos], data[__end] = data[__end], data[mid_pos]
-    __quick_sort__(first, mid_pos, data)
-    __quick_sort__(mid_pos, end, data)
+def quick_sort(first, end, data):
+
+    quick_sort(first, mid_pos, data)
+    quick_sort(mid_pos, end, data)
     
 def quick_sort(data):
     if isinstance(data, list):
-        __quick_sort__(0, len(data)-1, data)
+        quick_sort(0, len(data)-1, data)
 
 '''
 分治法 分解、求解、合并：

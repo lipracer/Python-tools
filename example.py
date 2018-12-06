@@ -32,6 +32,10 @@ def computer_distance(matrix, *points):
         computer_distance_one(matrix, pt)
         pass
         
+def vector_cross(ll, rl):
+    vlen = len(ll)
+    
+
 
 ll = [[10000000 for i in range(10)] for j in range(5)]
 computer_distance(ll, (3, 3), (4, 4))

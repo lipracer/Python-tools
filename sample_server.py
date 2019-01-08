@@ -1,6 +1,6 @@
 
 from http.server import *
-
+import socket,os
 def run(server_class=HTTPServer, handler_class=SimpleHTTPRequestHandler):
     print(os.getcwd())
     server_address = ('', 8000)

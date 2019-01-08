@@ -1,0 +1,79 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" id="viewport" content="width=device-width,initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+    <style>
+        a{text-decoration:none}
+        a{color:#FFB40D}
+        .mtitle{position:fixed; top: 0px; width: 100%; height: 52px;}
+        .mtitle{text-align: center; color: #2B2E48; font-size: 16px; font-family:'PingFangSC-Medium'}
+
+        .mnormal{position: fixed; left: 24px; right: 24px; top: 52px; bottom: 66px;}
+        .iqiyiframe{position: fixed; left: 270px; width: 222px; top: 52px; height: 260px;}
+
+        .mnormal{overflow-y: auto; color: #434672; font-size: 13px; font-family:'PingFangSC-Regular'}
+        .mnormal:after {
+            position: fixed;
+            content: '';
+            width: 100%;
+            height: 26px;
+            bottom: 66px;
+            left: 0%;
+            background-color: rgba(255,255, 255, 0);
+            background: linear-gradient(rgba(255,255, 255, 0), rgba(255,255, 255, 1))
+        }
+
+        .mbutton{position:fixed;  bottom: 0px; left: 0%; width: 100%; height: 50px;}
+        .mbutton{background-color: #FAFAFA}
+
+        #disagree_btn{text-align: center; position: absolute;  left: 0%; width: 50%; top: 50%; transform: translateY(-50%) }
+        .mbutton::after{
+            position: absolute;
+            content: '';
+            width: 1px;
+            height: 50px;
+            left: 50%;
+            top: 0%;
+            background-color: #E0E0E0;
+        }
+        #agree_btn{color:#FFB40D;  text-align: center; position: absolute;  left: 50%; width: 50%; top: 50%; transform: translateY(-50%) }
+    </style>
+</head>   
+<body>
+    <div class=mtitle>        
+        <p>用户政策隐私摘要</p>
+    </div>
+<!--
+    <div id="iframe1" class="iqiyiframe">
+        <iframe src="https://jiangbing.iqiyi.com/static/private/private.html"></iframe> 
+    </div> 
+-->
+
+    <div class=mnormal id='pzcontent'>
+        
+        <p>感谢您选择爱奇艺姜饼！</p>
+        <p>我们非常重视您的个人信息和隐私保护。为了更好地保障您的个人权益，在您使用我们的产品前，请务必审慎阅读
+            <a id="link" href="" onclick="buttonDivAction(this)">《爱奇艺隐私政策》</a>
+            内的所有条款，尤其是：</p>
+        <p>1. 我们对您的个人信息的收集/保存/使用/对外提供/保护等规则条款，以及您的用户权利等条款；<br>
+        2. 约定我们的限制责任、免责条款；<br>
+        3. 其他以颜色或加粗进行标识的重要条款。</p>
+        <p>如您对以上协议有任何疑问，可通过人工客服或发邮件至fankui@qiyi.com与我们联系。您点击“同意并继续”的行为即表示您已阅读完毕并同意以上协议的全部内容。 
+        如您同意以上协议内容，请点击“同意并继续”，开始使用我们的产品和服务！</p> 
+        <p></p>
+        <p></p>
+        <p></p>
+    </div>
+    <div class=mbutton>
+        <div id="disagree_btn" onclick="buttonDivAction(this)">不同意</div><div id="agree_btn" onclick="buttonDivAction(this)">同意并继续</div>
+    </div>
+    
+</body> 
+<script>
+    function buttonDivAction(obj) 
+    {
+        //console.log(obj.id)
+        window.webkit.messageHandlers.currentCookies.postMessage({"body": obj.id});
+    }
+</script>
+</html>

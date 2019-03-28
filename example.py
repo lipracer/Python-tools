@@ -1,7 +1,7 @@
 #example
 import random
 
-class question_01
+class question_01:
     '''
     给定一个矩阵，给一组京东储物柜的位置，求矩阵所有点距离最近储物柜的距离（只计算水平与垂直距离）：
     例如：储物柜Point(1, 1)     例如：储物柜Point(1, 1) Point(0, 0)
@@ -115,4 +115,63 @@ class diffStr:
         #str1 = '0123456789qwertyuiop'
         #str2 = '34567890ertyuiopasdfghjk'
         diffStr(str1.split('\n'), str2.split('\n'))
+
+'''
+1  2  6  7
+3  5  8  13
+4  9  12 14
+10 11 15 16
+'''
+
+#方阵
+def getRect(m, n):
+    result = [[0 for i in range(n)] for i in range(m)]
+    line_count = m + n - 1
+    tri_line_count = line_count // 2
+    count = 1
+    line_start = 1
+    direct = 0
+    for sum in range(tri_line_count):
+        for step in range(sum):
+            row, col = 0, 0
+            if direct%2==0:
+                row, col = sum-step, step
+            else:
+                row, col = step, sum-step
+            result[row][col] = count
+            result[m-row][n-col] = m*n+1 - result[row][col]
+            count += 1
+        direct += 1
+        line_start += 1
+            
+    print_result(result)
+
+def print_result(ll):
+    for i in ll:
+        print(i) 
+
+getRect(3, 3)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

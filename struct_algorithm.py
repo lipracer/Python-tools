@@ -61,6 +61,49 @@ def quick_sort(data):
 mlist = [0, 2, 3, 5, 7, 8, 6, 1, 4, 9]
 quick_sort(mlist)
 
-print(mlist)
+'''
+打印全排列
+'''
 
+def print_all_order(n):
+    print(n)
 
+'''
+0 1 2
+7 8 3
+6 5 4
+'''
+
+def write_matrix(start, end, matrix):
+    if start == end:
+        return
+    if start + 1 == end:
+        matrix[start][start] = 0
+        return
+    '''
+    写边长
+    '''
+    max_statr = (end - start) ** 2 - 1
+    slide_length = end - start - 1
+    for i in range(start, end - 1):
+        matrix[start][i] = max_statr
+        matrix[i][end - 1] = max_statr - slide_length
+        matrix[end - 1][end - i + start - 1] = max_statr - 2 * slide_length
+        matrix[end - i + start - 1][start] = max_statr - 3 * slide_length
+        max_statr -= 1
+    #print_result(matrix)
+    write_matrix(start + 1, end - 1, matrix)
+def print_result(matrix):
+    for it in matrix:
+        line = ''
+        for i in it:
+            line += str(i) + "\t"
+        print(line)
+
+def print_continue_matrix(n):
+    result = [[0 for i in range(n)] for i in range(n)]
+    write_matrix(0, n, result)
+    print_result(result)
+for i in range(10):
+    print_continue_matrix(i)
+    print('\n')

@@ -107,3 +107,17 @@ def print_continue_matrix(n):
 for i in range(10):
     print_continue_matrix(i)
     print('\n')
+class stack:
+    def __init__(self):
+        self.__data = []
+    def push(self, data):
+        self.__data.append(data)
+    def pop(self):
+        ret = self.__data[-1]
+        del self.__data[-1]
+        return ret
+
+stack = stack()
+for i in range(10):
+    stack.push(i)
+    print(stack.pop())

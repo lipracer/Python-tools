@@ -121,3 +121,4 @@ stack = stack()
 for i in range(10):
     stack.push(i)
     print(stack.pop())
+quick_sort(mlist)

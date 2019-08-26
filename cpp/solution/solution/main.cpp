@@ -55,9 +55,22 @@ void computer_count(const string& str)
     }
 }
 
+const size_t MaxTestValue = 256;
+const size_t test_count = 100;
+
 int main(int argc, const char * argv[])
 {
     string target = "easbfjbaeognaerlkbn";
     computer_count(target);
+    
+    size_t arr[test_count] = { 0 };
+    size_t out[test_count] = { 0 };
+    
+    for (size_t i = 0; i < test_count; i++)
+    {
+        arr[i] = rand() % MaxTestValue;
+    }
+    count_sort<MaxTestValue>(arr, test_count, out);
+    
     return 0;
 }

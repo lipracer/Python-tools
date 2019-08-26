@@ -117,8 +117,6 @@ class stack:
         del self.__data[-1]
         return ret
 
-stack = stack()
-for i in range(10):
-    stack.push(i)
-    print(stack.pop())
-quick_sort(mlist)
+
+def count_sort(tlist):
+    

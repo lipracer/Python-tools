@@ -150,7 +150,7 @@ def print_result(ll):
     for i in ll:
         print(i) 
 
-getRect(3, 3)
+#getRect(3, 3)
 
 
 '''
@@ -190,13 +190,30 @@ def print_continue_matrix(n):
     write_matrix(0, n, result)
     print_result(result)
 for i in range(10):
-    print_continue_matrix(i)
-    print('\n')
+    #print_continue_matrix(i)
+    #print('\n')
+    pass
 
 
+def float_zero(array):
+    '''
+    来自某厂面试题，将数组[9, 13, 0, 3, 0, 5, 8, 0, 0, 10]
+    0全部挪到数组左侧，右侧都是正数，且正数的相对位置不变，
+    这题乍一看真TM变态
+    '''
+    right_zero_count = 0
+    for i in range(len(array)-1, -1, -1):
+        if array[i] == 0:
+            right_zero_count += 1
+        if right_zero_count == 0:
+            continue
+        elif array[i] != 0:
+            array[i + right_zero_count] = array[i]
+            array[i] = 0
+    print(array)
+    pass
 
-
-
+float_zero([9, 13, 0, 3, 0, 5, 8, 0, 0, 10])
 
 
 

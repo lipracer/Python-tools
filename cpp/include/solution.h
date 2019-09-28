@@ -28,3 +28,5 @@ struct char_info
 	char_info() : count(0), first_appear_index(-1) {}
 };
 void computer_count(const string& str);
+
+void print_mitrax

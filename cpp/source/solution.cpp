@@ -22,14 +22,12 @@ void count_sort(size_t array[], size_t length, size_t out[])
     for (size_t i = 1; i < max_value; i++)
     {
         counts[i] = counts[i-1] + counts[i];
-    }
-    
+    }    
     for (size_t i = 0; i < length; i++)
     {
         counts[array[i]]--;
         out[counts[array[i]]] = array[i];
-    }
-    
+    }    
     delete [] counts;
 }
 
@@ -82,7 +80,3 @@ void computer_count(const string& str)
 		cout << it.value << "=" << it.count << endl;
 	}
 }
-
-const size_t MaxTestValue = 256;
-const size_t test_count = 100;
-

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		33B322BB23507DE100880704 /* solution.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33B322BA23507DE100880704 /* solution.cpp */; };
 		33F0C30823099FAD00B74690 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33F0C30723099FAD00B74690 /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +24,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		33B322BA23507DE100880704 /* solution.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = solution.cpp; path = ../source/solution.cpp; sourceTree = "<group>"; };
 		33F0C30423099FAD00B74690 /* solution */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = solution; sourceTree = BUILT_PRODUCTS_DIR; };
 		33F0C30723099FAD00B74690 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -41,6 +43,7 @@
 		33F0C2FB23099FAD00B74690 = {
 			isa = PBXGroup;
 			children = (
+				33B322BA23507DE100880704 /* solution.cpp */,
 				33F0C30623099FAD00B74690 /* solution */,
 				33F0C30523099FAD00B74690 /* Products */,
 			);
@@ -118,6 +121,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33B322BB23507DE100880704 /* solution.cpp in Sources */,
 				33F0C30823099FAD00B74690 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -181,6 +185,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../include";
 			};
 			name = Debug;
 		};
@@ -233,6 +238,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../include";
 			};
 			name = Release;
 		};

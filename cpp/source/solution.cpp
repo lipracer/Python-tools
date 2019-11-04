@@ -1,82 +1,97 @@
-//
-//  main.cpp
-//  solution
-//
-//  Created by ³ÂÁú on 2019/8/18.
-//  Copyright ? 2019 ³ÂÁú. All rights reserved.
-//
 
-#include "solution.h"
+#include <iostream>
+#include <vector>
+#include <chrono>
+#include <thread>
+#include <string>
+#include <list>
 
-//¼ÆÊıÅÅĞò
-template<size_t max_value>
-void count_sort(size_t array[], size_t length, size_t out[])
+using namespace std;
+using namespace chrono;
+
+/*
+huawei question:
+example aBBbb123aca
+output:
+a=3
+B=2
+b=2
+c=1
+âˆË†Â ËÅ“â€¡ÂµÂ»âˆÂ¥â€™â€™Å“Â»â‰¥Ë†Å“Ã·Å“Â»Â¥Ãšâ€Â°
+*/
+
+struct char_info
 {
-    size_t *counts = new size_t[max_value];
-    memset(counts, 0, sizeof(size_t) * max_value);
+	int count;
+	int first_appear_index;
+	char value;
+	char_info() : count(0), first_appear_index(-1) {}
+};
+void computer_count(const string& str);
+
+struct DNode
+{
+    DNode *prevNode;
+    DNode *nextNode;
+    void *data;
+};
+typedef DNode* pDNode;
+
+template <typename T>
+struct TreeNode
+{
+    TreeNode *leftNode;
+    TreeNode *rightNode;
+    T data;
     
-    for(size_t i  = 0; i < length; ++i)
+    TreeNode() : leftNode(nullptr), rightNode(nullptr)
     {
-        counts[array[i]]++;
+        
     }
-    for (size_t i = 1; i < max_value; i++)
-    {
-        counts[i] = counts[i-1] + counts[i];
-    }    
-    for (size_t i = 0; i < length; i++)
-    {
-        counts[array[i]]--;
-        out[counts[array[i]]] = array[i];
-    }    
-    delete [] counts;
-}
+};
 
-void computer_count(const string& str)
+template <typename T>
+class SearchTree
 {
-    char_info info[256];
-    for (int i = 0; i < str.length(); i++)
+    typedef TreeNode<T> Node;
+public:
+    void insert(Node node)
     {
-		int index = (int)str[i];
-		if (0 == info[index].count)
-		{
-			info[index].first_appear_index = i;
-		}
-        info[index].count++;
-		info[index].value = str[i];
+        if(!head)
+        {
+            head = new Node();
+            *head = node;
+            return;
+        }
+        Node *_tmpNode = new Node(node);
+        inset_node(head, _tmpNode);
     }
-	list<char_info> mlist;
-	for (int i = 0; i < 256; ++i) 
-	{
-		if (info[i].count) 
-		{
-			auto begin = mlist.begin();
-			while (begin != mlist.end())
-			{
-				if (begin->count < info[i].count) 
-				{
-					break;
-				}
-				else if(begin->count == info[i].count) 
-				{
-					if (str.find(info[i].value) > begin->first_appear_index) 
-					{
-						begin++;
-					}
-					else 
-					{
-						break;
-					}
-				}
-				else 
-				{
-					begin++;
-				}
-			}
-			mlist.insert(begin, info[i]);
-		}
-	}
-	for (auto it : mlist)
-	{
-		cout << it.value << "=" << it.count << endl;
-	}
-}
+    //ä¸­åºéå†
+    void ergodic()
+    {
+        
+    }
+private:
+    TreeNode<T>* head;
+    void inset_node(Node *cur_node, Node *targetNode)
+    {
+        if (targetNode->data < cur_node->data)
+        {
+            if(nullptr == cur_node->leftNode)
+            {
+                cur_node->leftNode = targetNode;
+                return;
+            }
+            inset_node(cur_node->leftNode, targetNode);
+        }
+        if (targetNode->data > cur_node->data)
+        {
+            if(nullptr == cur_node->rightNode)
+            {
+                cur_node->rightNode = targetNode;
+                return;
+            }
+            inset_node(cur_node->rightNode, targetNode);
+        }
+    }
+};
